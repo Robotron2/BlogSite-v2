@@ -3,29 +3,35 @@
     <p>
         <%= fact %>
     </p>
-    <h3>Blogs for today</h3>
 
-    <% allBlogs.forEach(blog=> { %>
-        <ul>
-            <li>
-                <h6>
-                    <%= blog.title %>
-                </h6>
-                <p>
-                    <%= blog.content.substring(0,100) + " ..." %>
-                        <a href="/">read more</a>
-                </p>
-            </li>
-            <div class="">
+    <% if (allBlogs.length !==0) {%>
+        <h3>Blogs for today</h3>
+        <%allBlogs.forEach(blog=> { %>
+            <ul>
+                <li>
+                    <h6>
+                        <%= blog.title %>
+                    </h6>
 
+                    <p>
+                        <%= blog.content.substring(0, 100) + "..." %>
+                            <a href="/blogs/<%=blog._id%> ">Read more</a>
+                    </p>
 
-            </div>
-        </ul>
-        <%}); %>
+                </li>
+                <div class="">
 
 
+                </div>
+            </ul>
+
+
+            <%}); %>
+                <%}%>
 
 
 
 
-            <%- include("./partials/footer") %>
+
+
+                    <%- include("./partials/footer") %>

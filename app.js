@@ -47,25 +47,32 @@ app.get("/about", function (req, res) {
 	res.render("about")
 })
 
+app.get("/contact", function (req, res) {
+	res.render("contact")
+})
+
 app.get("/compose", function (req, res) {
 	res.render("compose")
 })
 
-app.get("/blogs/:blogName", function (req, res) {
-	let blogTitle = _.upperFirst(req.params.blogName)
-	// console.log(blogTitle)
-	Blog.findOne({ title: blogTitle }).then((blog) => {
-		let title = blog.title
-		let content = blog.content
-		let author = blog.author
-		res.render("blog", { blogTitle: title, blogContent: content, blogAuthor: author })
+app.get("/blogs/:blogId", async function (req, res) {
+	const requestedBlogId = req.params.blogId
+
+	//   Post.findOne({_id: requestedPostId}, function(err, post){
+	//     res.render("post", {
+	//       title: post.title,
+	//       content: post.content
+	//     });
+
+	Blog.findOne({ _id: requestedBlogId }).then((blog) => {
+		res.render("blog", { blogTitle: blog.title, blogContent: blog.content, blogAuthor: blog.author })
 	})
 })
 
 app.post("/compose", async function (req, res) {
-	let postTitle = req.body.postTitle
-	let postBody = req.body.postBody
-	let postAuthor = req.body.postAuthor
+	let postTitle = _.upperFirst(req.body.postTitle)
+	let postBody = _.upperFirst(req.body.postBody)
+	let postAuthor = _.upperFirst(req.body.postAuthor)
 
 	const newBlog = new Blog({
 		title: postTitle,
