@@ -43,8 +43,23 @@ app.get("/", function (req, res) {
 	})
 })
 
+app.get("/about", function (req, res) {
+	res.render("about")
+})
+
 app.get("/compose", function (req, res) {
 	res.render("compose")
+})
+
+app.get("/blogs/:blogName", function (req, res) {
+	let blogTitle = _.upperFirst(req.params.blogName)
+	// console.log(blogTitle)
+	Blog.findOne({ title: blogTitle }).then((blog) => {
+		let title = blog.title
+		let content = blog.content
+		let author = blog.author
+		res.render("blog", { blogTitle: title, blogContent: content, blogAuthor: author })
+	})
 })
 
 app.post("/compose", async function (req, res) {
