@@ -12,8 +12,9 @@ app.set("view engine", "ejs")
 app.use(express.static("public"))
 
 //Connect to DB
-mongoose.connect("mongodb://localhost:27017/BlogsDB")
-
+// mongoose.connect("mongodb://localhost:27017/BlogsDB")
+// mongoose.connect("mongodb+srv://admin-theo:Test123@cluster0.wz55twn.mongodb.net/BlogDB")
+mongoose.connect("mongodb+srv://admin-theo:Test123@cluster1.6iktobd.mongodb.net/BlogDB")
 const blogSchema = new mongoose.Schema({
 	title: {
 		type: String,
@@ -37,8 +38,8 @@ Numquam soluta laborum odio inventore natus, voluptates, distinctio aliquid veni
 
 const Blog = mongoose.model("Blog", blogSchema)
 
-app.get("/", function (req, res) {
-	Blog.find({}).then((blogs) => {
+app.get("/", async function (req, res) {
+	await Blog.find({}).then((blogs) => {
 		res.render("home", { fact: defaultBlog, allBlogs: blogs })
 	})
 })
@@ -58,13 +59,7 @@ app.get("/compose", function (req, res) {
 app.get("/blogs/:blogId", async function (req, res) {
 	const requestedBlogId = req.params.blogId
 
-	//   Post.findOne({_id: requestedPostId}, function(err, post){
-	//     res.render("post", {
-	//       title: post.title,
-	//       content: post.content
-	//     });
-
-	Blog.findOne({ _id: requestedBlogId }).then((blog) => {
+	await Blog.findOne({ _id: requestedBlogId }).then((blog) => {
 		res.render("blog", { blogTitle: blog.title, blogContent: blog.content, blogAuthor: blog.author })
 	})
 })
