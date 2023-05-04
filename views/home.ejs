@@ -1,13 +1,31 @@
 <%- include("./partials/header") %>
-    <h1><i>Did you know?</i></h1>
+    <h3 class="mt-4"><i>Did you know?</i></h3>
     <p>
         <%= fact %>
     </p>
     <h3>Blogs for today</h3>
-    <h4>This is the homepage.</h4>
-    <h5>This is the homepage.</h5>
+
+    <% allBlogs.forEach(blog=> { %>
+        <ul>
+            <li>
+                <h6>
+                    <%= blog.title %>
+                </h6>
+                <p>
+                    <%= blog.content.substring(0,100) + " ..." %>
+                        <a href="/">read more</a>
+                </p>
+            </li>
+            <div class="">
+
+
+            </div>
+        </ul>
+        <%}); %>
 
 
 
 
-    <%- include("./partials/footer") %>
+
+
+            <%- include("./partials/footer") %>

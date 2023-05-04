@@ -38,14 +38,16 @@ Numquam soluta laborum odio inventore natus, voluptates, distinctio aliquid veni
 const Blog = mongoose.model("Blog", blogSchema)
 
 app.get("/", function (req, res) {
-	res.render("home", { fact: defaultBlog })
+	Blog.find({}).then((blogs) => {
+		res.render("home", { fact: defaultBlog, allBlogs: blogs })
+	})
 })
 
 app.get("/compose", function (req, res) {
 	res.render("compose")
 })
 
-app.post("/compose", function (req, res) {
+app.post("/compose", async function (req, res) {
 	let postTitle = req.body.postTitle
 	let postBody = req.body.postBody
 	let postAuthor = req.body.postAuthor
@@ -56,7 +58,7 @@ app.post("/compose", function (req, res) {
 		content: postBody
 	})
 
-	newBlog.save()
+	await newBlog.save()
 	res.redirect("/")
 })
 

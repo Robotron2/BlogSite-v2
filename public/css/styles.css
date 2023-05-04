@@ -1,3 +1,7 @@
+body {
+	background: #eaf6f6;
+}
+
 .container-fluid {
 	padding-top: 70px;
 	padding-bottom: 70px;
@@ -5,16 +9,25 @@
 
 .navbar {
 	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-bottom: 10px;
 	border: 0;
 	border-radius: 0;
 	margin-bottom: 0;
 	font-size: 12px;
 	letter-spacing: 5px;
+	background-color: transparent !important;
+}
+
+.navbar h1 {
+	font-size: 2vmax;
 }
 
 .navbar-nav li a:hover {
 	color: #1abc9c !important;
+}
+
+h3 {
+	font-size: 2vmax;
 }
 
 .footer-padding {
@@ -22,7 +35,7 @@
 }
 
 .footer {
-	position: absolute;
+	position: fixed;
 	text-align: center;
 	bottom: 0;
 	width: 100%;
