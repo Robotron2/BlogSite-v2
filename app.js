@@ -45,6 +45,21 @@ app.get("/compose", function (req, res) {
 	res.render("compose")
 })
 
+app.post("/compose", function (req, res) {
+	let postTitle = req.body.postTitle
+	let postBody = req.body.postBody
+	let postAuthor = req.body.postAuthor
+
+	const newBlog = new Blog({
+		title: postTitle,
+		author: postAuthor,
+		content: postBody
+	})
+
+	newBlog.save()
+	res.redirect("/")
+})
+
 //Spin up the server
 app.listen(4000, () => {
 	console.log("App is running on port 4000")
