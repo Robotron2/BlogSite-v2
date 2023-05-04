@@ -30,11 +30,9 @@ const blogSchema = new mongoose.Schema({
 	}
 })
 
-const defaultBlog = `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima iste quam fuga tempora voluptate cupiditate veniam est, similique nisi, quo blanditiis? Dignissimos magni esse ab et possimus fuga recusandae praesentium?
-Enim distinctio officia quas, tenetur porro exercitationem, qui quibusdam ad accusamus nemo provident repudiandae dolorum id vero veritatis odit quis voluptates error sequi. Ad veritatis eligendi maxime eos officia aut?
-Numquam soluta laborum odio inventore natus, voluptates, distinctio aliquid veniam voluptatum animi laudantium commodi ex minus exercitationem ipsum dignissimos unde id aperiam, quos rerum quae tempora cum. Eius, excepturi aliquid?
-`
+const defaultBlog = `Honorificabilitudinitatibus is the longest English word that consists strictly of alternating consonants and vowels`
+
+//In the next version, I'll make the default blog a random fact from an API.
 
 const Blog = mongoose.model("Blog", blogSchema)
 
